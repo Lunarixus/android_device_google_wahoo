@@ -105,18 +105,6 @@ MSM_VIDC_TARGET_LIST := msm8998 # Get the color format from kernel headers
 MASTER_SIDE_CP_TARGET_LIST := msm8998 # ION specific settings
 
 # A/B support
-PRODUCT_PACKAGES += \
-    otapreopt_script \
-    cppreopts.sh \
-    update_engine \
-    update_verifier
-
-PRODUCT_PACKAGES += \
-    bootctrl.msm8998
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.cp_system_other_odex=1
-
 AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
@@ -132,22 +120,16 @@ AB_OTA_POSTINSTALL_CONFIG += \
     FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-# Enable update engine sideloading by including the static version of the
-# boot_control HAL and its dependencies.
-PRODUCT_STATIC_BOOT_CONTROL_HAL := \
-    bootctrl.msm8998 \
-    libgptutils \
-    libz \
-    libcutils
-
 PRODUCT_PACKAGES += \
-    update_engine_sideload
+    otapreopt_script
 
-# The following modules are included in debuggable builds only.
+# Boot control
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl.recovery:64 \
+    bootctrl.msm8998.recovery
+
 PRODUCT_PACKAGES_DEBUG += \
-    a_sns_test \
-    bootctl \
-    update_engine_client
+    bootctl
 
 # Write flags to the vendor space in /misc partition.
 PRODUCT_PACKAGES += \
@@ -484,6 +466,14 @@ PRODUCT_PACKAGES += $(WPA)
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += wpa_cli
 endif
+
+# Boot control
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl.recovery:64 \
+    bootctrl.msm8998.recovery
+
+PRODUCT_PACKAGES_DEBUG += \
+    bootctl
 
 # IMS
 PRODUCT_PACKAGES += \
