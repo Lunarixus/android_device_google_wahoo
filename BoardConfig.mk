@@ -30,6 +30,13 @@ TARGET_2ND_CPU_VARIANT := cortex-a73
 
 BUILD_BROKEN_DUP_RULES := true
 
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CLANG_VERSION := r353983c
+TARGET_KERNEL_SOURCE := kernel/google/wahoo
+TARGET_KERNEL_CONFIG := wahoo_defconfig
+TARGET_KERNEL_ARCH := arm64
+BOARD_KERNEL_IMAGE_NAME := Image.lz4-dtb
+
 BOARD_KERNEL_CMDLINE += androidboot.hardware=$(TARGET_BOOTLOADER_BOARD_NAME) androidboot.console=ttyMSM0 lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += service_locator.enable=1
@@ -60,7 +67,7 @@ BOARD_USES_METADATA_PARTITION := true
 
 # Partitions (listed in the file) to be wiped under recovery.
 TARGET_RECOVERY_WIPE := device/google/wahoo/recovery.wipe
-TARGET_RECOVERY_FSTAB := device/google/wahoo/ramdisk/fstab.hardware
+TARGET_RECOVERY_FSTAB := device/google/wahoo/rootdir/etc/fstab.hardware
 
 BOARD_AVB_ENABLE := true
 
