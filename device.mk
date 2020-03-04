@@ -478,6 +478,12 @@ ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += wpa_cli
 endif
 
+# IMS
+PRODUCT_PACKAGES += \
+   com.android.ims.rcsmanager \
+   RcsService \
+   PresencePolling
+
 # Wifi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
