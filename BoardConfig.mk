@@ -85,6 +85,9 @@ BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
+# Audio
+BOARD_SUPPORTS_SOUND_TRIGGER := true
+
 # DTBO partition definitions
 TARGET_NEEDS_DTBOIMAGE := true
 BOARD_DTBOIMG_PARTITION_SIZE := 8388608
@@ -166,7 +169,7 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 # Vendor Interface Manifest
 DEVICE_MANIFEST_FILE := device/google/wahoo/configs/manifests/manifest.xml
 DEVICE_MATRIX_FILE := device/google/wahoo/configs/manifests/compatibility_matrix.xml
-DEVICE_FRAMEWORK_MANIFEST_FILE := device/google/wahoo/manifests/framework_manifest.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE := device/google/wahoo/configs/manifests/framework_manifest.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/google/wahoo/configs/manifests/device_framework_matrix.xml
 BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
 
