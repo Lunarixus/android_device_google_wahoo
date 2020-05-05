@@ -739,4 +739,6 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Enable missing props
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.opa.eligible_device=true \
-    ro.gfx.angle.supported=true
+    ro.gfx.angle.supported=true \
+    ro.hardware.egl=adreno \
+    ro.gfx.driver.0=com.google.pixel.wahoo.gfxdrv
