@@ -287,3 +287,9 @@
 
 # b/70518189 vDSO experiments
 /sys/module/vdso/parameters  u:object_r:sysfs_vdso:s0
+
+# System info
+/sys/class/thermal/thermal_zone0/temp          u:object_r:sysfs_device_info:s0
+/sys/class/power_supply/battery/temp           u:object_r:sysfs_device_info:s0
+/sys/kernel/gpu/gpu_clock                      u:object_r:sysfs_device_info:s0
+/sys/kernel/gpu/gpu_busy                       u:object_r:sysfs_device_info:s0
