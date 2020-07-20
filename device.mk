@@ -99,6 +99,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 AB_OTA_UPDATER := true
 
 AB_OTA_PARTITIONS += \
+    bootloader \
+    radio \
     boot \
     system \
     vbmeta \
