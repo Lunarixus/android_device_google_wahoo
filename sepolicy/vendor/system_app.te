@@ -11,3 +11,9 @@ set_prop(system_app, public_vendor_system_prop)
 
 # Allow reading system info
 allow system_app sysfs_device_info:file r_file_perms;
+
+# Battery health rules
+allow system_app sysfs_battery_supply:dir { search };
+allow system_app sysfs_battery_supply:file { read };
+allow system_app sysfs_battery_supply:file { open };
+allow system_app sysfs_battery_supply:file { getattr };
