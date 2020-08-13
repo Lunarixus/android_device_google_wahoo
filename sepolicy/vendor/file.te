@@ -97,3 +97,8 @@ type irqbalance_socket, file_type;
 
 type sysfs_pstore, sysfs_type, fs_type;
 type ramoops_vendor_data_file, file_type, data_file_type;
+
+# Smart charging and battery stats
+type sysfs_battery_supply, sysfs_type, fs_type;
+type sysfs_usb_supply, sysfs_type, fs_type;
+
