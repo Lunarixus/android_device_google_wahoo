@@ -127,6 +127,9 @@ BOARD_VENDOR_QCOM_LOC_PDK_FEATURE_SET := true
 # RenderScript
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
+# Vendor security patch level
+VENDOR_SECURITY_PATCH := 2020-08-05
+
 # wlan
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
