@@ -107,7 +107,7 @@ BOARD_PLAT_PUBLIC_SEPOLICY_DIR := device/google/wahoo/sepolicy/public
 BOARD_PLAT_PRIVATE_SEPOLICY_DIR := device/google/wahoo/sepolicy/private
 BOARD_SEPOLICY_DIRS += device/google/wahoo/sepolicy/verizon
 
-TARGET_FS_CONFIG_GEN := device/google/wahoo/config.fs
+TARGET_FS_CONFIG_GEN := device/google/wahoo/configs/fsconfig/config.fs
 
 QCOM_BOARD_PLATFORMS += msm8998
 BOARD_HAVE_BLUETOOTH_QCOM := true
