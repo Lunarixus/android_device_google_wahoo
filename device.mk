@@ -77,8 +77,31 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
     $(LOCAL_PATH)/configs/keylayout/uinput-fpc.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-fpc.idc \
+    $(LOCAL_PATH)/init.recovery.hardware.rc:recovery/root/init.recovery.$(PRODUCT_HARDWARE).rc \
+    $(LOCAL_PATH)/init.hardware.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.$(PRODUCT_HARDWARE).rc \
+    $(LOCAL_PATH)/init.hardware.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.wahoo.usb.rc \
+    $(LOCAL_PATH)/ueventd.hardware.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
+    $(LOCAL_PATH)/init.elabel.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/init.elabel.sh \
+    $(LOCAL_PATH)/init.power.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.power.sh \
+    $(LOCAL_PATH)/init.radio.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.radio.sh \
+    $(LOCAL_PATH)/uinput-fpc.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/uinput-fpc.kl \
+    $(LOCAL_PATH)/uinput-fpc.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/uinput-fpc.idc \
+    $(LOCAL_PATH)/init.qcom.devstart.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.devstart.sh \
+    $(LOCAL_PATH)/init.qcom.ipastart.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.ipastart.sh \
+    $(LOCAL_PATH)/init.insmod.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.insmod.sh \
+    $(LOCAL_PATH)/init.ramoops.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.ramoops.sh \
     frameworks/native/services/vr/virtual_touchpad/idc/vr-virtual-touchpad-0.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/vr-virtual-touchpad-0.idc \
     frameworks/native/services/vr/virtual_touchpad/idc/vr-virtual-touchpad-1.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/vr-virtual-touchpad-1.idc
+
+ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+  PRODUCT_COPY_FILES += \
+      $(LOCAL_PATH)/init.hardware.diag.rc.userdebug:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.$(PRODUCT_HARDWARE).diag.rc
+  PRODUCT_COPY_FILES += \
+      $(LOCAL_PATH)/init.hardware.chamber.rc.userdebug:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.$(PRODUCT_HARDWARE).chamber.rc
+else
+  PRODUCT_COPY_FILES += \
+      $(LOCAL_PATH)/init.hardware.diag.rc.user:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.$(PRODUCT_HARDWARE).diag.rc
+endif
 
 MSM_VIDC_TARGET_LIST := msm8998 # Get the color format from kernel headers
 MASTER_SIDE_CP_TARGET_LIST := msm8998 # ION specific settings
@@ -318,32 +341,6 @@ PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.mapper@2.0-impl-2.1 \
     libbt-vendor
-
-# Ramdisk
-PRODUCT_PACKAGES += \
-    fstab.hardware \
-    fstab.postinstall \
-    init.recovery.hardware.rc \
-    init.hardware.rc \
-    init.hardware.usb.rc \
-    ueventd.hardware.rc \
-    init.elabel.sh \
-    init.power.sh \
-    init.radio.sh \
-    init.qcom.devstart.sh \
-    init.qcom.ipastart.sh \
-    init.insmod.sh \
-    init.ramoops.sh
-
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-  PRODUCT_PACKAGES += \
-    init.hardware.diag.rc.userdebug
-  PRODUCT_PACKAGES += \
-    init.hardware.chamber.rc.userdebug
-else
-  PRODUCT_PACKAGES += \
-    init.hardware.diag.rc.user
-endif
 
 # RenderScript HAL
 PRODUCT_PACKAGES += \
@@ -602,6 +599,8 @@ PRODUCT_COPY_FILES += \
 # Fingerprint HIDL implementation
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service.fpc
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/init.fingerprint.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.fingerprint.sh \
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
@@ -630,6 +629,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+
+PRODUCT_COPY_FILES += \
+    device/google/wahoo/fstab.hardware:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_HARDWARE)
 
 # Use the default charger mode images
 PRODUCT_PACKAGES += \
