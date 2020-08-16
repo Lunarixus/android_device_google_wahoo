@@ -478,7 +478,6 @@ HOSTAPD += hostapd_cli
 PRODUCT_PACKAGES += $(HOSTAPD)
 
 WPA := wpa_supplicant.conf
-WPA += wpa_supplicant_wcn.conf
 WPA += wpa_supplicant
 PRODUCT_PACKAGES += $(WPA)
 
